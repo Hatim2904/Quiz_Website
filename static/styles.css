@@ -22,6 +22,7 @@ body {
 table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: auto;
 }
 
 /* Styles for table headers and cells */
@@ -43,6 +44,15 @@ tr:nth-child(even) {
 
 tr:hover {
     background-color: #e0e0e0;
+}
+
+/* Styles for hidden columns */
+.extra-columns {
+    /* Columns are visible by default, will be hidden when class 'hidden' is applied */
+}
+
+.extra-columns.hidden {
+    display: none; /* Hide columns when 'hidden' class is applied */
 }
 
 /* Styles for the logo and title */
@@ -85,6 +95,7 @@ input[type="text"] {
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 10px;
+    width: 100%; /* Make input fields full width */
 }
 
 button {
@@ -104,21 +115,21 @@ button:hover {
 /* Styles for the results container */
 .results-container {
     margin-top: 20px;
+    position: relative; /* Ensure the button is positioned correctly */
 }
 
-/* Styles for the Go Back button */
-.go-back-button {
-    display: inline-block;
-    margin-top: 20px;
+/* Styles for the Show More / Show Less button */
+#toggleButton {
+    margin-bottom: 10px;
     padding: 10px 15px;
     background-color: #007bff;
     color: white;
-    text-decoration: none;
+    border: none;
     border-radius: 4px;
-    font-size: 1em;
-    text-align: center;
+    cursor: pointer;
+    display: inline-block; /* Ensure the button is displayed as an inline block */
 }
 
-.go-back-button:hover {
+#toggleButton:hover {
     background-color: #0056b3;
 }
