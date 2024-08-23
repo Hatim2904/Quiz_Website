@@ -26,7 +26,7 @@ table {
 
 /* Styles for table headers and cells */
 th, td {
-    padding: 12px 15px;
+    padding: 12px 5px;
     text-align: left;
     border: 1px solid #ddd;
 }
