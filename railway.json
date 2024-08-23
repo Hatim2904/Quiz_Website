@@ -2,6 +2,6 @@
     "build": {
       "command": "pip install -r requirements.txt"
     },
-    "start": "python app.py"
+    "start": "python new_quiz.py"
   }
   
