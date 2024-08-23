@@ -14,10 +14,16 @@ df['Rank'] = df.index + 1
 # Reorder columns to make 'Rank' the first column
 columns = ['Rank'] + [col for col in df.columns if col != 'Rank']
 df = df[columns]
+# Function to format numeric values
+def format_numeric_values(df):
+    for col in df.select_dtypes(include=['float64']).columns:
+        df[col] = df[col].apply(lambda x: str(int(x)) if pd.notna(x) and x.is_integer() else f'{x:.2f}'.rstrip('0').rstrip('.'))
+    return df
 
-# Replace NaN values with empty strings
+# Clean the DataFrame
+df = format_numeric_values(df)
 df.fillna('', inplace=True)
-
+print(df.head())
 # Convert the DataFrame to a list of dictionaries for easier rendering in the template
 quiz_data = df.to_dict(orient='records')
 
