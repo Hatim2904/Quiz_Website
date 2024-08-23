@@ -56,7 +56,7 @@
                     <thead>
                         <tr>
                             {% for column in quiz_data[0].keys() %}
-                                <th class="{% if column in ['Quiz-1', 'Quiz-2', 'Quiz-3', 'Quiz-4','Quiz-5','Quiz-6', 'Quiz-7', 'Quiz-8', 'Quiz-9'] %} extra-columns {% endif %}">
+                                <th class="{% if column in ['Studying In','Quiz-1', 'Quiz-2', 'Quiz-3', 'Quiz-4','Quiz-5','Quiz-6', 'Quiz-7', 'Quiz-8', 'Quiz-9'] %} extra-columns {% endif %}">
                                     {{ column }}
                                 </th>
                             {% endfor %}
@@ -66,7 +66,7 @@
                         {% for row in quiz_data %}
                             <tr>
                                 {% for column in quiz_data[0].keys() %}
-                                    <td class="{% if column in ['Quiz-1', 'Quiz-2', 'Quiz-3', 'Quiz-4','Quiz-5','Quiz-6', 'Quiz-7', 'Quiz-8', 'Quiz-9'] %} extra-columns {% endif %}">
+                                    <td class="{% if column in ['Studying In','Quiz-1', 'Quiz-2', 'Quiz-3', 'Quiz-4','Quiz-5','Quiz-6', 'Quiz-7', 'Quiz-8', 'Quiz-9'] %} extra-columns {% endif %}">
                                         {{ row[column] }}
                                     </td>
                                 {% endfor %}
