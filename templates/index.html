@@ -13,6 +13,27 @@
                 document.getElementById("searchForm").submit(); // Auto-submit the form
             }
         }
+
+        // JavaScript function to toggle column visibility
+        function toggleColumns() {
+            var extraColumns = document.querySelectorAll('.extra-columns');
+            extraColumns.forEach(function(column) {
+                column.classList.toggle('hidden');
+            });
+
+            var toggleButton = document.getElementById('toggleButton');
+            if (toggleButton.innerText === 'Show Less') {
+                toggleButton.innerText = 'Show More';
+            } else {
+                toggleButton.innerText = 'Show Less';
+            }
+        }
+
+        // JavaScript to initialize the toggle button state on page load
+        window.onload = function() {
+            toggleColumns(); // Ensure columns are visible by default
+            document.getElementById('toggleButton').innerText = 'Show More';
+        }
     </script>
 </head>
 <body>
@@ -30,21 +51,29 @@
         <h2>Results</h2>
         {% if quiz_data %}
             <div class="results-container">
+                <button id="toggleButton" onclick="toggleColumns()">Show Less</button> <!-- Toggle button at the top -->
                 <table>
-                    <tr>
-                        {% for column in quiz_data[0].keys() %}
-                            <th>{{ column }}</th>
-                        {% endfor %}
-                    </tr>
-                    {% for row in quiz_data %}
+                    <thead>
                         <tr>
-                            {% for value in row.values() %}
-                                <td>{{ value }}</td>
+                            {% for column in quiz_data[0].keys() %}
+                                <th class="{% if column in ['Iktebasaat-1', 'Iktebasaat-2', 'Iktebasaat-3', 'Iktebasaat-4','Iktebasaat-5','Iktebasaat-6', 'Iktebasaat-7', 'Iktebasaat-8', 'Iktebasaat-9'] %} extra-columns {% endif %}">
+                                    {{ column }}
+                                </th>
                             {% endfor %}
                         </tr>
-                    {% endfor %}
+                    </thead>
+                    <tbody>
+                        {% for row in quiz_data %}
+                            <tr>
+                                {% for column in quiz_data[0].keys() %}
+                                    <td class="{% if column in ['Iktebasaat-1', 'Iktebasaat-2', 'Iktebasaat-3', 'Iktebasaat-4','Iktebasaat-5','Iktebasaat-6', 'Iktebasaat-7', 'Iktebasaat-8', 'Iktebasaat-9'] %} extra-columns {% endif %}">
+                                        {{ row[column] }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
-                
             </div>
         {% else %}
             <p>No results found for the provided ITS Number.</p>
