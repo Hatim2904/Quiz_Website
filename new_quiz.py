@@ -10,9 +10,9 @@ df.sort_values(by='Total New Score', ascending=False, inplace=True)
 
 # Add a Serial Number (Sr. No.) column
 df.reset_index(drop=True, inplace=True)
-df['Ranking'] = df.index + 1
-# Reorder columns to make 'Ranking' the first column
-columns = ['Ranking'] + [col for col in df.columns if col != 'Ranking']
+df['Rank'] = df.index + 1
+# Reorder columns to make 'Rank' the first column
+columns = ['Rank'] + [col for col in df.columns if col != 'Rank']
 df = df[columns]
 
 # Replace NaN values with empty strings
