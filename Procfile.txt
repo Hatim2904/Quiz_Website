@@ -1,1 +1,2 @@
 web: python new_quiz.py
+web: uvicorn new_quiz:app --host 0.0.0.0 --port $PORT
