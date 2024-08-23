@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script>
+        // JavaScript function to submit the form when the Enter key is pressed
+        function submitFormOnEnter(event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form from submitting the traditional way
+                document.getElementById("searchForm").submit(); // Auto-submit the form
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="/static/Logo.jpeg" alt="Logo" class="logo">
+            <h1>Quiz Results</h1>
+        </div>
+        <form id="searchForm" method="post" action="/search">
+            <label for="email">Enter your ITS Number:</label>
+            <input type="text" id="email" name="email" required onkeydown="submitFormOnEnter(event)">
+            <button type="submit">Search</button>
+        </form>
+        <hr>
+        <h2>Results</h2>
+        {% if quiz_data %}
+            <div class="results-container">
+                <table>
+                    <tr>
+                        {% for column in quiz_data[0].keys() %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for row in quiz_data %}
+                        <tr>
+                            {% for value in row.values() %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                
+            </div>
+        {% else %}
+            <p>No results found for the provided ITS Number.</p>
+        {% endif %}
+        <a href="/" class="go-back-button">Go Back</a> <!-- Go Back Button -->
+    </div>
+</body>
+</html>
